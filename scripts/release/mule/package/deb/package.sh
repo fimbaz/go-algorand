@@ -57,13 +57,13 @@ find tmp/node_pkgs -name "*${CHANNEL}*linux*${VERSION}*.tar.gz" | cut -d '/' -f3
             chmod g-w "$PKG_ROOT/usr/lib/algorand/$lib"
         done
 
-        data_files=("config.json.example" "system.json")
+        data_files=("config.json" "system.json")
         mkdir -p "$PKG_ROOT/var/lib/algorand"
         for data in "${data_files[@]}"; do
             cp "installer/$data" "$PKG_ROOT/var/lib/algorand"
         done
 
-        genesis_dirs=("devnet" "testnet" "mainnet" "betanet")
+        genesis_dirs=("devnet" "testnet" "mainnet" "betanet" "datanet101")
         for dir in "${genesis_dirs[@]}"; do
             mkdir -p "$PKG_ROOT/var/lib/algorand/genesis/$dir"
             cp "./installer/genesis/$dir/genesis.json" "$PKG_ROOT/var/lib/algorand/genesis/$dir/genesis.json"

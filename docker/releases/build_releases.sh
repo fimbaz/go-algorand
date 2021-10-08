@@ -69,6 +69,10 @@ case $NETWORK in
     IMAGE_NAME=betanet
     CHANNEL=beta
     ;;
+  datanet101)
+    IMAGE_NAME=datanet101
+    CHANNEL=fimbaz
+    ;;
   *)
     echo "$RED_FG[$0]$END_FG_COLOR Network values must be either \`mainnet\`, \`testnet\` or \`betanet\`."
     exit 1

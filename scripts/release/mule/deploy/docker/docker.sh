@@ -13,7 +13,7 @@ if [ -z "$NETWORK" ] || [ -z "$VERSION" ]; then
     exit 1
 fi
 
-if [[ ! "$NETWORK" =~ ^mainnet$|^testnet$|^betanet$ ]]
+if [[ ! "$NETWORK" =~ ^mainnet$|^testnet$|^betanet$|^datanet101$ ]]
 then
     echo "[$0] Network values must be either \`mainnet\`, \`testnet\` or \`betanet\`."
     exit 1

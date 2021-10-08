@@ -79,7 +79,7 @@ if [ $? -ne 0 ]; then exit 1; fi
 cp "installer/sudoers.template" ${PKG_ROOT}/bin
 if [ $? -ne 0 ]; then exit 1; fi
 
-data_files=("config.json.example")
+data_files=("config.json" "phonebook.json")
 mkdir ${PKG_ROOT}/data
 for data in "${data_files[@]}"; do
     cp installer/${data} ${PKG_ROOT}/data
@@ -88,7 +88,7 @@ done
 
 mkdir ${PKG_ROOT}/genesis
 
-genesis_dirs=("devnet" "testnet" "mainnet" "betanet")
+genesis_dirs=("devnet" "testnet" "mainnet" "betanet" "datanet101")
 for dir in "${genesis_dirs[@]}"; do
     mkdir -p ${PKG_ROOT}/genesis/${dir}
     cp ${REPO_DIR}/installer/genesis/${dir}/genesis.json ${PKG_ROOT}/genesis/${dir}/
