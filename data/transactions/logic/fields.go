@@ -284,7 +284,7 @@ var innerTxnTypes = map[string]protocol.TxType{
 	string(protocol.AssetTransferTx): protocol.AssetTransferTx,
 	string(protocol.AssetConfigTx):   protocol.AssetConfigTx,
 	string(protocol.AssetFreezeTx):   protocol.AssetFreezeTx,
-	string(protocol.ApplicationCallTx),	
+	string(protocol.ApplicationCallTx): protocol.ApplicationCallTx,
 }
 
 // TxnTypeNames is the values of Txn.Type in enum order
