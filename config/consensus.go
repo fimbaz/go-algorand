@@ -1054,7 +1054,7 @@ type Global struct {
 // Protocol holds the global configuration settings for the agreement protocol,
 // initialized with our current defaults. This is used across all nodes we create.
 var Protocol = Global{
-	SmallLambda: 2000 * time.Millisecond,
+	SmallLambda: 50 * time.Millisecond,
 	BigLambda:   15000 * time.Millisecond,
 }
 
