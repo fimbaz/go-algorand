@@ -180,7 +180,7 @@ const ConsensusFuture = ConsensusVersion(
 
 // ConsensusCurrentVersion is the latest version and should be used
 // when a specific version is not provided.
-const ConsensusCurrentVersion = ConsensusVDatanet100beta1 //ConsensusV30
+const ConsensusCurrentVersion =  ConsensusV30
 
 // Error is used to indicate that an unsupported protocol has been detected.
 type Error ConsensusVersion
