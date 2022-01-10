@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: change dir
+      run: cd docker
     - name: Build the Docker image
-      run: docker build ./ --no-cache --build-arg GOLANG_VERSION=1.17.2 --build-arg DEFAULTNETWORK=datanet101 --tag my-image-name:${GITHUB_REF##*/}
+      run: docker build ./ --no-cache --build-arg GOLANG_VERSION=1.17.2 --build-arg DEFAULTNETWORK=datanet101 --tag go-algorand:${GITHUB_REF##*/}
