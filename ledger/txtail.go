@@ -142,7 +142,7 @@ func (t *txTail) newBlock(blk bookkeeping.Block, delta ledgercore.StateDelta) {
 }
 
 func (t *txTail) committedUpTo(rnd basics.Round) basics.Round {
-	maxlife := basics.Round(t.recent[rnd].proto.MaxTxnLife)
+	maxlife := basics.Round(t.recent[rnd].proto.MaxTxnLife*2) // factor of 2 allows us to catch up from non-archival nodes I hope
 	for r := range t.recent {
 		if r+maxlife < rnd {
 			delete(t.recent, r)

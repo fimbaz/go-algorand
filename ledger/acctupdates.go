@@ -669,7 +669,7 @@ func (au *accountUpdates) committedUpTo(committedRound basics.Round) (retRound b
 	retRound = basics.Round(0)
 	var pendingDeltas int
 
-	lookback := basics.Round(config.Consensus[au.versions[len(au.versions)-1]].MaxBalLookback*2)
+	lookback := basics.Round(config.Consensus[au.versions[len(au.versions)-1]].MaxBalLookback)
 	if committedRound < lookback {
 		return
 	}
