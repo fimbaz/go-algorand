@@ -742,7 +742,7 @@ func (au *accountUpdates) committedUpTo(committedRound basics.Round) (retRound b
 		return au.dbRound
 	}
 
-	if isCatchpointRound && au.archivalLedger {
+	if isCatchpointRound && au.catchpointInterval != 0 {
 		// store non-zero ( all ones ) into the catchpointWriting atomic variable to indicate that a catchpoint is being written ( or, queued to be written )
 		atomic.StoreInt32(&au.catchpointWriting, int32(-1))
 		au.catchpointSlowWriting = make(chan struct{}, 1)
