@@ -2079,7 +2079,7 @@ func (au *accountUpdates) commitRound(offset uint64, dbRound basics.Round, lookb
 	// we can exit right away, as this is the result of mis-ordered call to committedUpTo.
 	if au.dbRound < dbRound || offset < uint64(au.dbRound-dbRound) {
 		// if this is an archival ledger, we might need to update the catchpointWriting variable.
-		if au.archivalLedger {
+		if au.catchpointInterval != 0 {
 			// determine if this was a catchpoint round
 			isCatchpointRound := ((offset + uint64(lookback+dbRound)) > 0) && (au.catchpointInterval != 0) && (0 == (uint64((offset + uint64(lookback+dbRound))) % au.catchpointInterval))
 			if isCatchpointRound {
@@ -2141,7 +2141,7 @@ func (au *accountUpdates) commitRound(offset uint64, dbRound basics.Round, lookb
 	// it's on a catchpoint round and it's an archival ledger. Doing this in a deferred function
 	// here would prevent us from "forgetting" to update this variable later on.
 	defer func() {
-		if isCatchpointRound && au.archivalLedger {
+		if isCatchpointRound && au.catchpointInterval != 0 {
 			atomic.StoreInt32(&au.catchpointWriting, 0)
 		}
 	}()
@@ -2328,7 +2328,7 @@ func (au *accountUpdates) commitRound(offset uint64, dbRound basics.Round, lookb
 
 	au.accountsReadCond.Broadcast()
 
-	if isCatchpointRound && au.archivalLedger && catchpointLabel != "" {
+	if isCatchpointRound && au.catchpointInterval != 0 && catchpointLabel != "" {
 		// generate the catchpoint file. This need to be done inline so that it will block any new accounts that from being written.
 		// the generateCatchpoint expects that the accounts data would not be modified in the background during it's execution.
 		au.generateCatchpoint(basics.Round(offset)+dbRound+lookback, catchpointLabel, committedRoundDigest, updatingBalancesDuration)
